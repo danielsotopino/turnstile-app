@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Generar Token Turnstile</title>
+  <script src="http://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+</head>
+<body>
+  <h2>Generar Token (invisible)</h2>
+
+  <form id="captcha-form" action="/" method="POST">
+    <div class="cf-turnstile"
+         data-sitekey="0x4AAAAAABiW7t23fP266D6z"
+         data-callback="onVerify">
+    </div>
+
+    <button type="submit" onclick="event.preventDefault(); turnstile.execute();">
+      Generar Token
+    </button>
+  </form>
+
+  <p>Token generado:</p>
+  <textarea id="token-output" rows="5" cols="80" readonly></textarea>
+
+  <p><a href="/validate">Ir a validar token</a></p>
+
+  <script>
+    function onVerify(token) {
+      document.getElementById('token-output').value = token;
+    }
+  </script>
+</body>
+</html>
